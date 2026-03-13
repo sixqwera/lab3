@@ -1,29 +1,26 @@
 open System
 
-let rec getlist() = 
+let rec getSeq() = seq {
     let s = Console.ReadLine()
-    if String.IsNullOrWhiteSpace(s) then 
-       []
-    else 
+    if not (String.IsNullOrWhiteSpace(s)) then 
         if Char.IsDigit(s.[0]) && s.Length = 1 then 
-            let n = int s 
-            n :: getlist()
+            yield int s          // "Выдаем" одно число
+            yield! getSeq()      // Рекурсивно "подмешиваем" остальную последовательность
         else
-            printfn "Ошибка, букв или числ не должно быть" 
-            getlist()
+            printfn "Ошибка, введите одну цифру" 
+            yield! getSeq()      
+}
 
 let toBin(n: int) = Convert.ToString(n, 2)
 
 [<EntryPoint>]
-let main argv = 
-    printfn "Вводите числа:"
-    
+let main args = 
+    printfn "Вводите цифры (пустая строка для выхода):"
 
-    let numbers = getlist()
+    let numbers = getSeq() |> Seq.toList 
     let afterToBin = numbers |> Seq.map toBin
 
+    printfn "Числа: %A" numbers
+    printfn "Двоичная запись: %A" afterToBin
 
-    printfn "Числа %A" numbers
-    printfn "Двоичная запись чисел %A" afterToBin
-
-    0   
+    0
