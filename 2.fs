@@ -31,7 +31,7 @@ let rusWords n =
 let main argv = 
     printfn "Вводите цифры (Enter для завершения):"
     
-    let mySeq = getSeq()
+    let mySeq = getSeq() |> Seq.toList
 
     let resultString = 
         mySeq 
