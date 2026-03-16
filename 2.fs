@@ -32,7 +32,6 @@ let main argv =
     printfn "Вводите цифры (Enter для завершения):"
     
     let mySeq = getSeq()
-
     let result = 
         mySeq 
         |> Seq.fold (fun aсс n -> aсс + " " + rusWords n) ""
