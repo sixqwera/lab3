@@ -4,12 +4,12 @@ let rec getSeq() = seq {
     let s = Console.ReadLine()
     if not (String.IsNullOrWhiteSpace(s)) then
         if s.Length = 1 && Char.IsDigit(s.[0]) then
-            yield int s            // Выдаем число в поток
-            yield! getSeq()        // Рекурсивно продолжаем поток
+            yield int s            
+            yield! getSeq()       
         else
             printfn "Ошибка!"
-            yield! getSeq()        // Пропускаем ошибку и продолжаем поток
-}
+            yield! getSeq()
+}   
 
 let rusWords n = 
     match n with
@@ -31,13 +31,12 @@ let rusWords n =
 let main argv = 
     printfn "Вводите цифры (Enter для завершения):"
     
-    let mySeq = getSeq() |> Seq.toList
+    let mySeq = getSeq()
 
     let resultString = 
         mySeq 
-        |> Seq.fold (fun all n -> all + " " + rusWords n) ""
+        |> Seq.fold (fun aсс n -> aсс + " " + rusWords n) ""
         
-    printfn "Ваша последовательность: %A" (Seq.toList mySeq)
-    printfn "Результат через fold: %s" (resultString.Trim())
+    printfn "Результат через fold: %s" resultString
 
     0
