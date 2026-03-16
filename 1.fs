@@ -17,10 +17,9 @@ let toBin(n: int) = Convert.ToString(n, 2)
 let main args = 
     printfn "Вводите цифры (пустая строка для выхода):"
 
-    let numbers = getSeq() |> Seq.toList 
+    let numbers = getSeq() 
     let afterToBin = numbers |> Seq.map toBin
 
-    printfn "Числа: %A" numbers
     printfn "Двоичная запись: %A" afterToBin
 
     0
