@@ -3,9 +3,9 @@ open System
 let rec getSeq() = seq {
     let s = Console.ReadLine()
     if not (String.IsNullOrWhiteSpace(s)) then 
-        if Char.IsDigit(s.[0]) && s.Length = 1 then 
-            yield int s          // "Выдаем" одно число
-            yield! getSeq()      // Рекурсивно "подмешиваем" остальную последовательность
+        if Char.IsDigit(s.[0]) && s.Length = 1 then
+            yield int s          
+            yield! getSeq()      
         else
             printfn "Ошибка, введите одну цифру" 
             yield! getSeq()      
@@ -16,10 +16,10 @@ let toBin(n: int) = Convert.ToString(n, 2)
 [<EntryPoint>]
 let main args = 
     printfn "Вводите цифры (пустая строка для выхода):"
-
-    let numbers = getSeq() 
+    
+    let numbers = getSeq()
     let afterToBin = numbers |> Seq.map toBin
 
-    printfn "Двоичная запись: %A" afterToBin
+    printfn"Двоичная запись %A " afterToBin
 
     0
