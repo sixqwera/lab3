@@ -33,10 +33,10 @@ let main argv =
     
     let mySeq = getSeq()
 
-    let resultString = 
+    let result = 
         mySeq 
         |> Seq.fold (fun aсс n -> aсс + " " + rusWords n) ""
         
-    printfn "Результат через fold: %s" resultString
+    printfn "Результат через fold: %s" result
 
     0
